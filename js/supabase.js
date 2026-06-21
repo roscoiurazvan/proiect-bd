@@ -82,6 +82,7 @@ async function logoutUser() {
  * Actualizeaza navbar-ul in functie de starea de autentificare
  */
 async function updateNavbarAuth() {
+    if (!supabase || !supabase.auth) return;
     const user = await getCurrentUser();
     const navbarNav = document.querySelector('.navbar-nav');
     
@@ -117,6 +118,7 @@ async function updateNavbarAuth() {
  * Handler pentru butonul de logout
  */
 async function handleLogout() {
+    if (!supabase || !supabase.auth) return;
     const { error } = await logoutUser();
     if (error) {
         showToast('Eroare la deconectare: ' + error.message, 'error');
@@ -129,10 +131,21 @@ async function handleLogout() {
     }
 }
 
-// Ascultam schimbarile de autentificare
-supabase.auth.onAuthStateChange((event, session) => {
-    updateNavbarAuth();
-});
+// Exportam explicit functiile in window
+window.getCurrentUser = getCurrentUser;
+window.isAdmin = isAdmin;
+window.loginUser = loginUser;
+window.registerUser = registerUser;
+window.logoutUser = logoutUser;
+window.handleLogout = handleLogout;
+window.updateNavbarAuth = updateNavbarAuth;
+
+// Ascultam schimbarile de autentificare doar daca supabase e initializat
+if (supabase && supabase.auth) {
+    supabase.auth.onAuthStateChange((event, session) => {
+        updateNavbarAuth();
+    });
+}
 
 // Actualizam navbar-ul la incarcarea paginii
 document.addEventListener('DOMContentLoaded', () => {
