@@ -179,7 +179,7 @@
                 <!-- Add Review Section -->
                 <div id="review-form-container" class="review-form-section" style="display: none;">
                     <h3>Lasa o recenzie</h3>
-                    <form class="review-form" id="review-form" onsubmit="return false;">
+                    <form class="review-form" id="review-form" onsubmit="submitReview(); return false;">
                         <input type="text" id="review-name" class="form-control" placeholder="Nume" required readonly>
                         <input type="text" id="review-city" class="form-control" placeholder="Oras (ex: Bacau, Romania)" required>
                         <textarea id="review-message" class="form-control" placeholder="Mesajul tau" required></textarea>
@@ -255,7 +255,7 @@
                 </div>
                 <div class="subscribe-form footer-item">
                     <h2>Abonează-te la Newsletter-ul nostru!</h2>
-                    <form class="flex" id="newsletter-form" onsubmit="return false;">
+                    <form class="flex" id="newsletter-form" onsubmit="handleNewsletterSubscribe(); return false;">
                         <input type="email" id="newsletter-email" placeholder="Introdu adresa de email" class="form-control" required>
                         <button type="submit" id="newsletter-btn" class="btn">Abonează-te</button>
                     </form>
