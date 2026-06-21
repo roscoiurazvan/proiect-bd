@@ -184,13 +184,14 @@
                         <input type="text" id="review-city" class="form-control" placeholder="Oras (ex: Bacau, Romania)" required>
                         <textarea id="review-message" class="form-control" placeholder="Mesajul tau" required></textarea>
                         
-                        <div class="star-rating-picker">
-                            <input type="radio" id="star5" name="rating" value="5" required /><label for="star5" title="5 stele"><i class="fas fa-star"></i></label>
-                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stele"><i class="fas fa-star"></i></label>
-                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stele"><i class="fas fa-star"></i></label>
-                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stele"><i class="fas fa-star"></i></label>
-                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 stea"><i class="fas fa-star"></i></label>
+                        <div class="star-rating-picker" id="star-rating-picker">
+                            <i class="far fa-star" data-value="1" style="cursor: pointer;"></i>
+                            <i class="far fa-star" data-value="2" style="cursor: pointer;"></i>
+                            <i class="far fa-star" data-value="3" style="cursor: pointer;"></i>
+                            <i class="far fa-star" data-value="4" style="cursor: pointer;"></i>
+                            <i class="far fa-star" data-value="5" style="cursor: pointer;"></i>
                         </div>
+                        <input type="hidden" id="review-rating" value="0">
 
                         <button type="submit" id="review-submit-btn" class="btn">Trimite recenzia</button>
                     </form>
@@ -273,7 +274,7 @@
             // ==========================================
             let isLoginMode = true;
 
-            function toggleAuthMode() {
+            window.toggleAuthMode = function toggleAuthMode() {
                 isLoginMode = !isLoginMode;
                 document.getElementById('auth-title').innerText = isLoginMode ? 'Autentificare' : 'Inregistrare';
                 document.getElementById('auth-submit-btn').innerText = isLoginMode ? 'Autentificare' : 'Inregistrare';
@@ -313,7 +314,7 @@
             });
 
             // ========== LOGOUT ==========
-            async function handleLogout() {
+            window.handleLogout = async function handleLogout() {
                 try {
                     await supabaseClient.auth.signOut();
                     showToast('Te-ai deconectat cu succes!', 'success');
@@ -469,7 +470,7 @@
             }
 
             // ========== SUBMIT REVIEW ==========
-            async function submitReview() {
+            window.submitReview = async function submitReview() {
                 const name = document.getElementById('review-name').value.trim();
                 const city = document.getElementById('review-city').value.trim();
                 const message = document.getElementById('review-message').value.trim();
@@ -517,7 +518,7 @@
             }
 
             // ========== NEWSLETTER SUBSCRIBE ==========
-            async function handleNewsletterSubscribe() {
+            window.handleNewsletterSubscribe = async function handleNewsletterSubscribe() {
                 const emailInput = document.getElementById('newsletter-email');
                 const email = emailInput.value.trim();
 
