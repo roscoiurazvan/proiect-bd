@@ -406,6 +406,9 @@ header{
 #services *{
     color: #fff;
 }
+.services-item *{
+    color: var(--dark);
+}
 .services-item{
     text-align: center;
     padding: 2rem 1.5rem;
@@ -429,6 +432,7 @@ header{
 .services-item .btn{
     margin-top: 1.6rem;
     display: inline-block;
+    color: #fff !important;
 }
 
 
