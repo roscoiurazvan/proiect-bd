@@ -36,3 +36,26 @@ window.addEventListener('resize', () => {
         document.body.classList.remove("resize-animation-stopper");
     }, 400);
 });
+// ========== SCROLL ANIMATIONS (Intersection Observer) ==========
+document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show-scroll');
+                observer.unobserve(entry.target); // Animate only once
+            }
+        });
+    }, observerOptions);
+
+    // Adaugam clasa hidden-scroll pe elementele pe care vrem sa le animam
+    const animElements = document.querySelectorAll('.services-item, .test-item, .about-right, .about-left, .gallery-item');
+    animElements.forEach(el => {
+        el.classList.add('hidden-scroll');
+        observer.observe(el);
+    });
+});
