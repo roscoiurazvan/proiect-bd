@@ -1209,4 +1209,32 @@ header.header-sm{
 
 @keyframes spin {
     to { transform: rotate(360deg); }
+}/* Overrides for horizontally scrollable reviews */
+#reviews-container {
+    display: flex !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    gap: 2rem;
+    padding-bottom: 2rem;
+}
+#reviews-container::-webkit-scrollbar {
+    height: 10px;
+}
+#reviews-container::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 4px;
+}
+#reviews-container::-webkit-scrollbar-thumb {
+    background: #f5a623; 
+    border-radius: 4px;
+}
+#reviews-container::-webkit-scrollbar-thumb:hover {
+    background: #d48f1f; 
+}
+#reviews-container .test-item {
+    flex: 0 0 auto !important;
+    width: 350px !important;
+    scroll-snap-align: center;
+    margin: 1rem 0 10rem 0 !important;
 }
