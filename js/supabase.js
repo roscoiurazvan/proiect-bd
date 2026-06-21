@@ -9,6 +9,7 @@ let supabaseClient;
 try {
     if (typeof window.supabase !== 'undefined') {
         supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        window.supabaseClient = supabaseClient;
     } else {
         console.error("Supabase CDN failed to load.");
     }
