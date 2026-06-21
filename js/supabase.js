@@ -6,8 +6,16 @@ const SUPABASE_URL = 'https://uvdmxnklmefvsxfbyomc.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV2ZG14bmtsbWVmdnN4ZmJ5b21jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIwNTUzNzIsImV4cCI6MjA5NzYzMTM3Mn0.23SaO2wQOT85-LqdEmIbvlB0YuJkayj1IWsTijt60Aw';
 
 // Initializam clientul Supabase
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
+let supabase;
+try {
+    if (typeof window.supabase === 'undefined') {
+        console.error("Supabase CDN script failed to load. Check adblockers or network.");
+    } else {
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
+} catch (e) {
+    console.error("Failed to initialize Supabase client: ", e);
+}
 // =============================================
 // Auth Helpers
 // =============================================
