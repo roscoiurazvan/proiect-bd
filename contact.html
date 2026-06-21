@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SC-ELROM/Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/utility.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        /* Popup Confirmation Modal */
+        .popupm {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 9999;
+            width: 300px;
+            height: 200px;
+        }
+        .popupm.active {
+            display: block;
+        }
+        .popup-content {
+            margin-bottom: 20px;
+        }
+        .popupm .close-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .popupm .btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Styling for Date Picker and Calendar Icon */
+        .contact-form input[type="date"],
+        .contact-form input[type="tel"],
+        .contact-form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Container for Date input and Icon */
+        .date-input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .date-input-wrapper input[type="date"] {
+            padding-right: 35px; /* To create space for the icon */
+        }
+
+        .calendar-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: #888;
+            pointer-events: none; /* Prevent the icon from interfering with clicks */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container flex">
+            <a href="index.html" class="site-brand">SC<span>-ELROM</span></a>
+            <button type="button" id="navbar-show-btn" class="flex">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div id="navbar-collapse">
+                <button type="button" id="navbar-close-btn" class="flex">
+                    <i class="fas fa-times"></i>
+                </button>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Acasa</a></li>
+                    <li class="nav-item"><a href="galerie.html" class="nav-link">Galerie</a></li>
+                    <li class="nav-item"><a href="despre.html" class="nav-link">Despre</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="flex header-sm">
+        <div class="container">
+            <div class="header-title">
+                <h1>Contact</h1>
+                <p>Spune sugestia ta.</p>
+            </div>
+        </div>
+    </header>
+
+    <section id="contact" class="py-4">
+        <div class="container">
+            <div class="title-wrap">
+                <span class="sm-title">colaboreaza cu noi</span>
+                <h2 class="lg-title">Contacteaza-ne</h2>
+            </div>
+            <div class="contact-row">
+                <div class="contact-left">
+                    <form class="contact-form" onsubmit="return false;">
+                        <input type="text" class="form-control" placeholder="Nume" id="name">
+                        <input type="email" class="form-control" placeholder="Email" id="email">
+                        <textarea rows="4" class="form-control" placeholder="Mesajul tau" style="resize: none;" id="message"></textarea>
+                        <input type="button" class="btn" value="Trimite mesajul" id="btn-send-message" onclick="showPopup()">
+                    </form>
+                </div>
+
+                <div class="contact-right my-2">
+                    <div class="contact-item">
+                        <span class="contact-icon flex"><i class="fa fa-phone-alt"></i></span>
+                        <div><span>Telefon</span><p class="text">+40234 519 963</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon flex"><i class="fa fa-map-marked-alt"></i></span>
+                        <div><span>Adresa</span><p class="text">Str. Energiei nr. 45 Bacau, Romania</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon flex"><i class="fa fa-envelope"></i></span>
+                        <div><span>Mesaj</span><p class="text">office@sc-elrom.ro</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scheduling Meeting Form -->
+            <div class="title-wrap mt-4">
+                <h2 class="lg-title">Programeaza o intalnire</h2>
+            </div>
+            <div class="contact-row">
+                <div class="contact-left">
+                    <form class="contact-form" onsubmit="return false;">
+                        <input type="text" class="form-control" placeholder="Numele tau" id="meeting-name">
+                        <input type="tel" class="form-control" placeholder="Numar de telefon" id="meeting-phone">
+                        
+                        <!-- Date input with calendar icon -->
+                        <div class="date-input-wrapper">
+                            <input type="date" class="form-control" id="meeting-date">
+                            <i class="fas fa-calendar-alt calendar-icon"></i>
+                        </div>
+
+                        <input type="button" class="btn" value="Programeaza intalnirea" id="btn-schedule-meeting" onclick="showModal()">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="popupm">
+        <div class="popup-content">
+            <h3>Confirmare Intalnire</h3>
+            <p><strong>Nume:</strong> <span id="modal-name"></span></p>
+            <p><strong>Telefon:</strong> <span id="modal-phone"></span></p>
+            <p><strong>Data:</strong> <span id="modal-date"></span></p>
+        </div>
+        <button class="btn" onclick="closeModal()">Confirm</button>
+        <button class="close-btn" onclick="closeModal()">&#10006;</button>
+    </div>
+
+    <footer class="py-4">
+        <div class="container footer-row">
+            <div class="footer-item">
+                <a href="index.html" class="site-brand">SC<span>-ELROM</span></a>
+                <p class="text">Ne concentrăm în mod deosebit pe calitatea produselor noastre...</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/supabase.js"></script>
+    <script>
+        // Trimite mesaj de contact catre Supabase
+        async function showPopup() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Validare campuri
+            if (!name || !email || !message) {
+                showToast('Te rugam sa completezi toate campurile!', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('btn-send-message');
+            const originalValue = btn.value;
+            btn.value = 'Se trimite...';
+            btn.disabled = true;
+
+            try {
+                const { error } = await supabase
+                    .from('mesaje_contact')
+                    .insert({ nume: name, email: email, mesaj: message });
+
+                if (error) throw error;
+
+                showToast('Mesajul tau a fost trimis cu succes!', 'success');
+
+                // Curata campurile formularului
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('message').value = '';
+            } catch (err) {
+                console.error('Eroare la trimiterea mesajului:', err);
+                showToast('Eroare la trimiterea mesajului. Incearca din nou!', 'error');
+            } finally {
+                btn.value = originalValue;
+                btn.disabled = false;
+            }
+        }
+
+        // Programeaza intalnire si salveaza in Supabase
+        async function showModal() {
+            const name = document.getElementById('meeting-name').value.trim();
+            const phone = document.getElementById('meeting-phone').value.trim();
+            const date = document.getElementById('meeting-date').value;
+
+            // Validare campuri
+            if (!name || !phone || !date) {
+                showToast('Te rugam sa completezi toate campurile!', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('btn-schedule-meeting');
+            const originalValue = btn.value;
+            btn.value = 'Se programeaza...';
+            btn.disabled = true;
+
+            try {
+                const { error } = await supabase
+                    .from('programari')
+                    .insert({ nume: name, telefon: phone, data_intalnire: date });
+
+                if (error) throw error;
+
+                // Afiseaza modalul de confirmare cu datele introduse
+                document.getElementById('modal-name').textContent = name;
+                document.getElementById('modal-phone').textContent = phone;
+                document.getElementById('modal-date').textContent = date;
+                document.getElementById('confirmation-modal').classList.add('active');
+
+                showToast('Programarea a fost inregistrata!', 'success');
+
+                // Curata campurile formularului
+                document.getElementById('meeting-name').value = '';
+                document.getElementById('meeting-phone').value = '';
+                document.getElementById('meeting-date').value = '';
+            } catch (err) {
+                console.error('Eroare la programarea intalnire:', err);
+                showToast('Eroare la programare. Incearca din nou!', 'error');
+            } finally {
+                btn.value = originalValue;
+                btn.disabled = false;
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('confirmation-modal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
