@@ -228,7 +228,7 @@
         async function loadDashboardData() {
             try {
                 // 1. Incarcare Mesaje
-                const { data: mesaje } = await supabase.from('mesaje_contact').select('*').order('created_at', { ascending: false });
+                const { data: mesaje } = await window.supabaseClient.from('mesaje_contact').select('*').order('created_at', { ascending: false });
                 const tbodyMesaje = document.getElementById('tbody-mesaje');
                 document.getElementById('stat-mesaje').innerText = mesaje ? mesaje.length : 0;
                 
@@ -255,7 +255,7 @@
                 }
 
                 // 2. Incarcare Programari
-                const { data: programari } = await supabase.from('programari').select('*').order('created_at', { ascending: false });
+                const { data: programari } = await window.supabaseClient.from('programari').select('*').order('created_at', { ascending: false });
                 const tbodyProgramari = document.getElementById('tbody-programari');
                 document.getElementById('stat-programari').innerText = programari ? programari.length : 0;
                 
@@ -283,7 +283,7 @@
                 }
 
                 // 3. Incarcare Newsletter
-                const { data: abonati } = await supabase.from('abonati_newsletter').select('*').order('created_at', { ascending: false });
+                const { data: abonati } = await window.supabaseClient.from('abonati_newsletter').select('*').order('created_at', { ascending: false });
                 const tbodyNewsletter = document.getElementById('tbody-newsletter');
                 document.getElementById('stat-abonati').innerText = abonati ? abonati.length : 0;
                 
@@ -307,7 +307,7 @@
                 }
 
                 // 4. Incarcare Recenzii
-                const { data: recenzii } = await supabase.from('recenzii').select('*').order('created_at', { ascending: false });
+                const { data: recenzii } = await window.supabaseClient.from('recenzii').select('*').order('created_at', { ascending: false });
                 const tbodyRecenzii = document.getElementById('tbody-recenzii');
                 
                 const recenziiInAsteptare = recenzii ? recenzii.filter(r => !r.aprobat).length : 0;
@@ -348,7 +348,7 @@
 
         // Actiuni DB
         window.markMessageRead = async function(id) {
-            const { error } = await supabase.from('mesaje_contact').update({ citit: true }).eq('id', id);
+            const { error } = await window.supabaseClient.from('mesaje_contact').update({ citit: true }).eq('id', id);
             if(error) {
                 showToast('Eroare: ' + error.message, 'error');
             } else {
@@ -358,7 +358,7 @@
         };
 
         window.updateProgramareStatus = async function(id, status) {
-            const { error } = await supabase.from('programari').update({ status: status }).eq('id', id);
+            const { error } = await window.supabaseClient.from('programari').update({ status: status }).eq('id', id);
             if(error) {
                 showToast('Eroare: ' + error.message, 'error');
             } else {
@@ -367,7 +367,7 @@
         };
 
         window.approveRecenzie = async function(id) {
-            const { error } = await supabase.from('recenzii').update({ aprobat: true }).eq('id', id);
+            const { error } = await window.supabaseClient.from('recenzii').update({ aprobat: true }).eq('id', id);
             if(error) {
                 showToast('Eroare: ' + error.message, 'error');
             } else {
@@ -379,7 +379,7 @@
         window.deleteRecord = async function(table, id) {
             if(!confirm('Esti sigur ca vrei sa stergi aceasta inregistrare? Aceasta actiune este ireversibila.')) return;
             
-            const { error } = await supabase.from(table).delete().eq('id', id);
+            const { error } = await window.supabaseClient.from(table).delete().eq('id', id);
             if(error) {
                 showToast('Eroare la stergere: ' + error.message, 'error');
             } else {
