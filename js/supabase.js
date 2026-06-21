@@ -5,10 +5,10 @@
 const SUPABASE_URL = 'https://uvdmxnklmefvsxfbyomc.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV2ZG14bmtsbWVmdnN4ZmJ5b21jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIwNTUzNzIsImV4cCI6MjA5NzYzMTM3Mn0.23SaO2wQOT85-LqdEmIbvlB0YuJkayj1IWsTijt60Aw';
 
-let supabase;
+let supabaseClient;
 try {
     if (typeof window.supabase !== 'undefined') {
-        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     } else {
         console.error("Supabase CDN failed to load.");
     }
@@ -18,32 +18,32 @@ try {
 
 // Auth Helpers exposed globally IMMEDIATELY
 window.getCurrentUser = async () => {
-    if (!supabase) return null;
-    const { data: { user } } = await supabase.auth.getUser();
+    if (!supabaseClient) return null;
+    const { data: { user } } = await supabaseClient.auth.getUser();
     return user;
 };
 
 window.isAdmin = async () => {
-    if (!supabase) return false;
+    if (!supabaseClient) return false;
     const user = await window.getCurrentUser();
     if (!user) return false;
-    const { data, error } = await supabase.from('admin_users').select('id').eq('user_id', user.id).single();
+    const { data, error } = await supabaseClient.from('admin_users').select('id').eq('user_id', user.id).single();
     return !!data && !error;
 };
 
 window.loginUser = async (email, password) => {
-    if (!supabase) return { error: { message: "Supabase not connected" } };
-    return await supabase.auth.signInWithPassword({ email, password });
+    if (!supabaseClient) return { error: { message: "Supabase not connected" } };
+    return await supabaseClient.auth.signInWithPassword({ email, password });
 };
 
 window.registerUser = async (email, password) => {
-    if (!supabase) return { error: { message: "Supabase not connected" } };
-    return await supabase.auth.signUp({ email, password });
+    if (!supabaseClient) return { error: { message: "Supabase not connected" } };
+    return await supabaseClient.auth.signUp({ email, password });
 };
 
 window.logoutUser = async () => {
-    if (!supabase) return { error: null };
-    return await supabase.auth.signOut();
+    if (!supabaseClient) return { error: null };
+    return await supabaseClient.auth.signOut();
 };
 
 window.handleLogout = async () => {
@@ -57,7 +57,7 @@ window.handleLogout = async () => {
 };
 
 window.updateNavbarAuth = async () => {
-    if (!supabase) return;
+    if (!supabaseClient) return;
     const user = await window.getCurrentUser();
     const navbarNav = document.querySelector('.navbar-nav');
     if (!navbarNav) return;
@@ -80,8 +80,8 @@ window.updateNavbarAuth = async () => {
     }
 };
 
-if (supabase && supabase.auth) {
-    supabase.auth.onAuthStateChange((event, session) => {
+if (supabaseClient && supabaseClient.auth) {
+    supabaseClient.auth.onAuthStateChange((event, session) => {
         window.updateNavbarAuth();
     });
 }
