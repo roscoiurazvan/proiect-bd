@@ -5,149 +5,87 @@
 const SUPABASE_URL = 'https://uvdmxnklmefvsxfbyomc.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV2ZG14bmtsbWVmdnN4ZmJ5b21jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIwNTUzNzIsImV4cCI6MjA5NzYzMTM3Mn0.23SaO2wQOT85-LqdEmIbvlB0YuJkayj1IWsTijt60Aw';
 
-// Initializam clientul Supabase
 let supabase;
 try {
-    if (typeof window.supabase === 'undefined') {
-        console.error("Supabase CDN script failed to load. Check adblockers or network.");
-    } else {
+    if (typeof window.supabase !== 'undefined') {
         supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    } else {
+        console.error("Supabase CDN failed to load.");
     }
 } catch (e) {
-    console.error("Failed to initialize Supabase client: ", e);
+    console.error("Supabase client init failed: ", e);
 }
-// =============================================
-// Auth Helpers
-// =============================================
 
-/**
- * Returneaza userul curent autentificat sau null
- */
-async function getCurrentUser() {
+// Auth Helpers exposed globally IMMEDIATELY
+window.getCurrentUser = async () => {
+    if (!supabase) return null;
     const { data: { user } } = await supabase.auth.getUser();
     return user;
-}
+};
 
-/**
- * Verifica daca userul curent este admin
- */
-async function isAdmin() {
-    const user = await getCurrentUser();
+window.isAdmin = async () => {
+    if (!supabase) return false;
+    const user = await window.getCurrentUser();
     if (!user) return false;
-    
-    const { data, error } = await supabase
-        .from('admin_users')
-        .select('id')
-        .eq('user_id', user.id)
-        .single();
-    
+    const { data, error } = await supabase.from('admin_users').select('id').eq('user_id', user.id).single();
     return !!data && !error;
-}
+};
 
-/**
- * Autentificare cu email si parola
- */
-async function loginUser(email, password) {
-    const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password
-    });
-    return { data, error };
-}
+window.loginUser = async (email, password) => {
+    if (!supabase) return { error: { message: "Supabase not connected" } };
+    return await supabase.auth.signInWithPassword({ email, password });
+};
 
-/**
- * Inregistrare cont nou
- */
-async function registerUser(email, password) {
-    const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password
-    });
-    return { data, error };
-}
+window.registerUser = async (email, password) => {
+    if (!supabase) return { error: { message: "Supabase not connected" } };
+    return await supabase.auth.signUp({ email, password });
+};
 
-/**
- * Deconectare
- */
-async function logoutUser() {
-    const { error } = await supabase.auth.signOut();
-    return { error };
-}
+window.logoutUser = async () => {
+    if (!supabase) return { error: null };
+    return await supabase.auth.signOut();
+};
 
-// =============================================
-// Navbar Auth UI - actualizare pe toate paginile
-// =============================================
+window.handleLogout = async () => {
+    const { error } = await window.logoutUser();
+    if (error) {
+        if(typeof showToast === 'function') showToast('Eroare la deconectare: ' + error.message, 'error');
+    } else {
+        if(typeof showToast === 'function') showToast('Te-ai deconectat cu succes!', 'success');
+        setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+    }
+};
 
-/**
- * Actualizeaza navbar-ul in functie de starea de autentificare
- */
-async function updateNavbarAuth() {
-    if (!supabase || !supabase.auth) return;
-    const user = await getCurrentUser();
+window.updateNavbarAuth = async () => {
+    if (!supabase) return;
+    const user = await window.getCurrentUser();
     const navbarNav = document.querySelector('.navbar-nav');
-    
     if (!navbarNav) return;
     
-    // Sterge elementele de auth existente
     const existingAuthItems = navbarNav.querySelectorAll('.nav-item-auth');
     existingAuthItems.forEach(item => item.remove());
     
     if (user) {
-        const admin = await isAdmin();
-        
-        // Adauga link Admin daca e admin
+        const admin = await window.isAdmin();
         if (admin) {
             const adminItem = document.createElement('li');
             adminItem.className = 'nav-item nav-item-auth';
             adminItem.innerHTML = '<a href="admin.html" class="nav-link nav-link-admin">⚙ Admin</a>';
             navbarNav.appendChild(adminItem);
         }
-        
-        // Adauga info user + buton logout
         const userItem = document.createElement('li');
         userItem.className = 'nav-item nav-item-auth';
-        userItem.innerHTML = `
-            <span class="nav-user-email">${user.email}</span>
-            <button class="btn-logout" onclick="handleLogout()">Deconectare</button>
-        `;
+        userItem.innerHTML = `<span class="nav-user-email">${user.email}</span><button class="btn-logout" onclick="window.handleLogout()">Deconectare</button>`;
         navbarNav.appendChild(userItem);
     }
-}
+};
 
-/**
- * Handler pentru butonul de logout
- */
-async function handleLogout() {
-    if (!supabase || !supabase.auth) return;
-    const { error } = await logoutUser();
-    if (error) {
-        showToast('Eroare la deconectare: ' + error.message, 'error');
-    } else {
-        showToast('Te-ai deconectat cu succes!', 'success');
-        // Redirectare catre pagina principala dupa logout
-        setTimeout(() => {
-            window.location.href = 'index.html';
-        }, 1000);
-    }
-}
-
-// Exportam explicit functiile in window
-window.getCurrentUser = getCurrentUser;
-window.isAdmin = isAdmin;
-window.loginUser = loginUser;
-window.registerUser = registerUser;
-window.logoutUser = logoutUser;
-window.handleLogout = handleLogout;
-window.updateNavbarAuth = updateNavbarAuth;
-
-// Ascultam schimbarile de autentificare doar daca supabase e initializat
 if (supabase && supabase.auth) {
     supabase.auth.onAuthStateChange((event, session) => {
-        updateNavbarAuth();
+        window.updateNavbarAuth();
     });
 }
 
-// Actualizam navbar-ul la incarcarea paginii
 document.addEventListener('DOMContentLoaded', () => {
-    updateNavbarAuth();
+    if (window.updateNavbarAuth) window.updateNavbarAuth();
 });
