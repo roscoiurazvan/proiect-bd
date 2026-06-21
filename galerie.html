@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title> SC-ELROM/Galerie</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+        <link rel = "stylesheet" href = "font/fonts.css">
+        
+        <link rel = "stylesheet" href = "css/normalize.css">
+       
+        <link rel = "stylesheet" href = "css/utility.css">
+        <link rel = "stylesheet" href = "css/style.css">
+        <link rel = "stylesheet" href = "css/responsive.css">
+    </head>
+    <body>
+        
+        <nav class = "navbar">
+            <div class = "container flex">
+                <a href = "index.html" class = "site-brand">
+                    SC<span>-ELROM</span>
+                </a>
+
+                <button type = "button" id = "navbar-show-btn" class = "flex">
+                    <i class = "fas fa-bars"></i>
+                </button>
+                <div id = "navbar-collapse">
+                    <button type = "button" id = "navbar-close-btn" class = "flex">
+                        <i class = "fas fa-times"></i>
+                    </button>
+                    <ul class = "navbar-nav">
+                        <li class = "nav-item">
+                            <a href = "index.html" class = "nav-link">Acasa</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "galerie.html" class = "nav-link">Galerie</a>
+                        </li>
+                        
+                        
+                        
+                        <li class = "nav-item">
+                            <a href = "despre.html" class = "nav-link">Despre</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "contact.html" class = "nav-link">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+
+       
+        <header class = "flex header-sm">
+            <div class = "container">
+                <div class = "header-title">
+                    <h1>Galerie</h1>
+                    <p>Nu ne preocupăm doar de instalatii electrice. Cream siguranta si confort, oferind solutii in care fiecare detaliu conteaza pentru viitorul tau.</p>
+                </div>
+            </div>
+        </header>
+       
+<span> <h1>Instalatiile noastre </h1> </span>
+        <div id = "gallery" class = "py-4">
+            <div class = "container">
+                <div class = "gallery-row">
+                    <div class = "gallery-item shadow">
+                        <img src = "images/gallery/1.jpg" alt = "gallery img">
+                        <span class = "zoom-icon">
+                            <i class = "fas fa-search-plus"></i>
+                        </span>
+                    </div>
+                    <div class = "gallery-item shadow">
+                        <img src = "images/gallery/2.jpg" alt = "gallery img">
+                        <span class = "zoom-icon">
+                            <i class = "fas fa-search-plus"></i>
+                        </span>
+                    </div>
+                    <div class = "gallery-item shadow">
+                        <img src = "images/gallery/3.jpg" alt = "gallery img">
+                        <span class = "zoom-icon">
+                            <i class = "fas fa-search-plus"></i>
+                        </span>
+                    </div>
+                    <div class = "gallery-item shadow">
+                        <img src = "images/gallery/4.jpg" alt = "gallery img">
+                        <span class = "zoom-icon">
+                            <i class = "fas fa-search-plus"></i>
+                        </span>
+                    </div>
+                    <div class = "gallery-item shadow">
+                        <img src = "images/gallery/5.jpg" alt = "gallery img">
+                        <span class = "zoom-icon">
+                            <i class = "fas fa-search-plus"></i>
+                        </span>
+                    </div>
+                    <div class = "gallery-item shadow">
+                        <img src = "images/gallery/6.jpg" alt = "gallery img">
+                        <span class = "zoom-icon">
+                            <i class = "fas fa-search-plus"></i>
+                        </span>
+                    </div>
+                    <div class = "gallery-item shadow">
+                        <img src = "images/gallery/7.jpg" alt = "gallery img">
+                        <span class = "zoom-icon">
+                            <i class = "fas fa-search-plus"></i>
+                        </span>
+                    </div>
+                    <div class = "gallery-item shadow">
+                        <img src = "images/gallery/8.jpg" alt = "gallery img">
+                        <span class = "zoom-icon">
+                            <i class = "fas fa-search-plus"></i>
+                        </span>
+                    </div>
+                    <div class = "gallery-item shadow">
+                        <img src = "images/gallery/9.jpg" alt = "gallery img">
+                        <span class = "zoom-icon">
+                            <i class = "fas fa-search-plus"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id = "img-modal-box">
+            <div id = "img-modal">
+                <button type = "button" id = "modal-close-btn" class = "flex">
+                    <i class = "fas fa-times"></i>
+                </button>
+                <button type = "button" id = "prev-btn" class = "flex">
+                    <i class = "fas fa-chevron-left"></i>
+                </button>
+                <button type = "button" id = "next-btn" class = "flex">
+                    <i class = "fas fa-chevron-right"></i>
+                </button>
+                <img src = "images/gallery-1.jpg">
+            </div>
+        </div>
+        
+        <section id = "popular" class = "py-4">
+
+            <div class = "popular-row">
+                <div class = "popular-item shadow">
+                    <img src = "images/g10 (2).jpg" alt = "">
+                    <div>
+                        <span>Gozderg,Bergen</span>
+                        <ul class = "rating flex">
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star-half-alt"></i></li>
+                            <li>&nbsp;400 reviews</li>
+                        </ul>
+                        
+                    </div>
+                </div>
+
+                <div class = "popular-item shadow">
+                    <img src = "images/g11.jpg" alt = "">
+                    <div>
+                        <span>Dansurg, Poznan</span>
+                        <ul class = "rating flex">
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star-half-alt"></i></li>
+                            <li>&nbsp;400 reviews</li>
+                        </ul>
+                    
+                    </div>
+                </div>
+
+                <div class = "popular-item shadow">
+                    <img src = "images/g12.png" alt = "">
+                    <div>
+                        <span>Acropolis, Athens</span>
+                        <ul class = "rating flex">
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star-half-alt"></i></li>
+                            <li>&nbsp;400 reviews</li>
+                        </ul>
+                        
+                    </div>
+                </div>
+
+                <div class = "popular-item shadow">
+                    <img src = "images/g13.jpg" alt = "">
+                    <div>
+                        <span>High Resort, Sibiu</span>
+                        <ul class = "rating flex">
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star-half-alt"></i></li>
+                            <li>&nbsp;400 reviews</li>
+                        </ul>
+                       
+                    </div>
+                </div>
+
+                <div class = "popular-item shadow">
+                    <img src = "images/g14.jpg" alt = "">
+                    <div>
+                        <span>La Claratima, Bilbao</span>
+                        <ul class = "rating flex">
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star-half-alt"></i></li>
+                            <li>&nbsp;400 reviews</li>
+                        </ul>
+                        
+                    </div>
+                </div>
+
+                <div class = "popular-item shadow">
+                    <img src = "images/g15.jpg" alt = "">
+                    <div>
+                        <span>Bhan, Geneve</span>
+                        <ul class = "rating flex">
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star-half-alt"></i></li>
+                            <li>&nbsp;400 reviews</li>
+                        </ul>
+                       
+                    </div>
+                </div>
+
+                <div class = "popular-item shadow">
+                    <img src = "images/g16.jpg" alt = "">
+                    <div>
+                        <span>Oulu, Helsinki</span>
+                        <ul class = "rating flex">
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star-half-alt"></i></li>
+                            <li>&nbsp;400 reviews</li>
+                        </ul>
+                        
+                    </div>
+                </div>
+
+                <div class = "popular-item shadow">
+                    <img src = "images/g17.jpg" alt = "">
+                    <div>
+                        <span>Vinstepin, Estonia</span>
+                        <ul class = "rating flex">
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star"></i></li>
+                            <li><i class = "fas fa-star-half-alt"></i></li>
+                            <li>&nbsp;400 reviews</li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+  
+        
+
+        <footer class = "py-4">
+            <div class = "container footer-row">
+                <div class = "footer-item">
+                    <a href = "index.html" class = "site-brand">
+                        SC<span>-ELROM</span>
+                    </a>
+                    <p class = "text">Ne concentrăm în mod deosebit pe calitatea produselor noastre, angajându-ne să lucrăm cu atenție pentru a oferi instalatii durabile.</p>
+                </div>
+
+                <div class = "footer-item">
+                    <h2>Follow us on: </h2>
+                    <ul class = "social-links">
+                        <li>
+                            <a href = "#">
+                                <i class = "fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href = "#">
+                                <i class = "fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href = "#">
+                                <i class = "fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href = "#">
+                                <i class = "fab fa-pinterest"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href = "#">
+                                <i class = "fab fa-google-plus"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class = "footer-item">
+                    <h2>Orase partenere</h2>
+                    <ul>
+                        <li><a href = "#">Brasov, Romania</a></li>
+                        <li><a href = "#">Bucuresti, Romania</a></li>
+                        <li><a href = "#">Sibiu, Romania</a></li>
+                        <li><a href = "#">Cluj-Napoca, Romania</a></li>
+                        
+                    </ul>
+                </div>
+
+                <div class = "subscribe-form footer-item">
+                    <h2>Aboneaza-te la  Newsletter-ul nostru!</h2>
+                    <form class = "flex">
+                        <input type = "email" id="subscribe-email" placeholder="Introduceți email-ul" class = "form-control">
+                        <input type="button" id="subscribe-btn" class="btn" value="Abonează-te">
+                    </form>
+                </div>
+            </div>
+        </footer>
+    
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="js/toast.js"></script>
+        <script src="js/supabase.js"></script>
+        <script src = "js/script.js"></script>
+        <script>
+          
+          document.getElementById('subscribe-btn').addEventListener('click', async function() {
+              const emailInput = document.getElementById('subscribe-email');
+              const email = emailInput.value.trim();
+
+              if (!email) {
+                  showToast('Vă rugăm să introduceți adresa de email.', 'error');
+                  return;
+              }
+
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              if (!emailRegex.test(email)) {
+                  showToast('Vă rugăm să introduceți o adresă de email validă.', 'error');
+                  return;
+              }
+
+              try {
+                  const { data, error } = await supabase
+                      .from('abonati_newsletter')
+                      .upsert({ email: email }, { onConflict: 'email' });
+
+                  if (error) {
+                      showToast('A apărut o eroare. Vă rugăm să încercați din nou.', 'error');
+                      console.error('Eroare Supabase:', error);
+                  } else {
+                      showToast('Vă mulțumim pentru abonare!', 'success');
+                      emailInput.value = '';
+                  }
+              } catch (err) {
+                  showToast('A apărut o eroare de conexiune. Încercați mai târziu.', 'error');
+                  console.error('Eroare:', err);
+              }
+          });
+
+            const allGalleryItem = document.querySelectorAll('.gallery-item');
+            const imgModalDiv = document.getElementById('img-modal-box');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            let imgIndex = 0;
+
+            allGalleryItem.forEach((galleryItem) => {
+                galleryItem.addEventListener('click', () => {
+                    imgModalDiv.style.display = "block";
+                    let imgSrc = galleryItem.querySelector('img').src;
+                    imgIndex = parseInt(imgSrc.split("-")[1].substring(0, 1));
+                    showImageContent(imgIndex);
+                })
+            });
+
+           
+            nextBtn.addEventListener('click', () => {
+                imgIndex++;
+                if(imgIndex > allGalleryItem.length){
+                    imgIndex = 1;
+                }
+                showImageContent(imgIndex);
+            });
+
+           
+            prevBtn.addEventListener('click', () => {
+                imgIndex--;
+                if(imgIndex <= 0){
+                    imgIndex = allGalleryItem.length;
+                }
+                showImageContent(imgIndex);
+            });
+
+            function showImageContent(index){
+                imgModalDiv.querySelector('#img-modal img').src = `images/g${index}.jpg`;
+            }
+
+            modalCloseBtn.addEventListener('click', () => {
+                imgModalDiv.style.display = "none";
+            })
+        </script>
+    </body>
+</html>
