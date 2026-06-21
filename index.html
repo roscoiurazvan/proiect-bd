@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>SC-ELROM/Acasa</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+        <link rel = "stylesheet" href = "font/fonts.css">
+        
+        <link rel = "stylesheet" href = "css/normalize.css">
+        
+        <link rel = "stylesheet" href = "css/utility.css">
+        <link rel = "stylesheet" href = "css/style.css">
+        <link rel = "stylesheet" href = "css/responsive.css">
+    </head>
+    <body>
+        
+        <nav class = "navbar">
+            <div class = "container flex">
+                <a href = "index.html" class = "site-brand">
+                    SC<span>-ELROM</span>
+                </a>
+
+                <button type = "button" id = "navbar-show-btn" class = "flex">
+                    <i class = "fas fa-bars"></i>
+                </button>
+                <div id = "navbar-collapse">
+                    <button type = "button" id = "navbar-close-btn" class = "flex">
+                        <i class = "fas fa-times"></i>
+                    </button>
+                    <ul class = "navbar-nav">
+                        <li class = "nav-item">
+                            <a href = "index.html" class = "nav-link">Acasa</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "galerie.html" class = "nav-link">Galerie</a>
+                        </li>
+                        
+                       
+                        
+                        <li class = "nav-item">
+                            <a href = "despre.html" class = "nav-link">Despre noi</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href = "contact.html" class = "nav-link">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+
+        
+        <header class = "flex">
+            <div class = "container">
+                <div class = "header-title">
+                    <h1>News for 2025</h1>
+                    <p>Energie transformata in siguranta si performanta. </p>
+                </div>
+                <div class = "header-form" id="auth-section">
+                    <!-- Auth Form (shown when logged out) -->
+                    <div id="auth-form-container">
+                        <h2 id="auth-title">Autentificare</h2>
+                        <form class="flex" id="auth-form" onsubmit="return false;">
+                            <input type="email" id="auth-email" class="form-control" placeholder="Email" required>
+                            <input type="password" id="auth-password" class="form-control" placeholder="Parola" required>
+                            <div style="display: flex; gap: 8px; width: 100%;">
+                                <input type="button" class="btn" id="auth-submit-btn" value="Autentificare" onclick="handleAuth()">
+                            </div>
+                        </form>
+                        <p style="margin-top: 8px; text-align: center; font-size: 14px;">
+                            <a href="#" id="auth-toggle-link" onclick="toggleAuthMode(); return false;" style="color: #fff; text-decoration: underline;">Nu ai cont? Inregistreaza-te</a>
+                        </p>
+                    </div>
+                    <!-- Logged-in info (shown when logged in) -->
+                    <div id="user-info-container" style="display: none;">
+                        <h2>Bine ai venit!</h2>
+                        <p style="color: #fff; margin-bottom: 10px;" id="user-email-display"></p>
+                        <input type="button" class="btn" value="Deconectare" onclick="handleLogout()">
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+
+        
+        <section id = "featured" class = "py-4">
+            <div class = "container">
+                <div class = "title-wrap">
+                    <span class = "sm-title">Tot ceea ce iti doresti</span>
+                    <h2 class = "lg-title">Design</h2>
+                </div>
+
+                <div class = "featured-row">
+                    <div class = "featured-item my-2 shadow">
+                        <img src = "images/home/1.jpg" alt = "featured place">
+                    </div>
+
+                    <div class = "featured-item my-2 shadow">
+                        <img src = "images/home/2.jpg" alt = "featured place">
+                    </div>
+
+                    <div class = "featured-item my-2 shadow">
+                        <img src = "images/home/3.jpg" alt = "featured place">
+                    </div>
+
+                    <div class = "featured-item my-2 shadow">
+                        <img src = "images/home/4.jpg" alt = "featured place">
+                    </div>
+
+                    <div class = "featured-item my-2 shadow">
+                        <img src = "images/home/5.jpg" alt = "featured place">
+                    </div>
+
+                    <div class = "featured-item my-2 shadow">
+                        <img src = "images/home/6.jpg" alt = "featured place">
+                       
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        <section id = "services" class = "py-4">
+            <div class = "container">
+                <div class = "title-wrap">
+                    <span class = "sm-title">Tot ceea ce trebuie sa stii despre serviciile noastre.</span>
+                    <h2 class = "lg-title">Serviciile noastre</h2>
+                </div>
+
+                <div class = "services-row">
+                    <div class = "services-item">
+                        <span class = "services-icon">
+                            <i class = "fas fa-hotel"></i>
+                        </span>
+                        <h3>Calitate</h3>
+                        <p class = "text">Instalatii electrice de cea mai inalta performanta, adaptata nevoilor tale.</p>
+                        <a href = "#" class = "btn">Citeste mai mult</a>
+                    </div>
+
+                    <div class = "services-item">
+                        <span class = "services-icon">
+                            <i class = "fas fa-map-marked-alt"></i>
+                        </span>
+                        <h3>Oriunde in Europa</h3>
+                        <p class = "text">Nu conteaza unde locuiesti, suntem aici sa iti transformam visul in realitate. </p>
+                        <a href = "#" class = "btn">Read more</a>
+                    </div>
+
+                    <div class = "services-item">
+                        <span class = "services-icon">
+                            <i class = "fas fa-money-bill"></i>
+                        </span>
+                        <h3>Preturi accesibile</h3>
+                        <p class = "text">Preturi accesibile pentru toate categoriile de persoane. </p>
+                        <a href = "#" class = "btn">Citeste mai mult</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id = "testimonials" class = "py-4">
+            <div class = "container">
+                <div class = "title-wrap">
+                    <span class = "sm-title">Parerile clientilor nostri</span>
+                    <h2 class = "lg-title">Recenzii</h2>
+                </div>
+
+                <div class="test-row" id="reviews-container">
+                    <!-- Dinamic loaded reviews go here -->
+                    <p style="text-align:center; width:100%;">Se incarca recenziile...</p>
+                </div>
+
+                <!-- Add Review Section -->
+                <div id="review-form-container" class="review-form-section" style="display: none;">
+                    <h3>Lasa o recenzie</h3>
+                    <form class="review-form" id="review-form" onsubmit="return false;">
+                        <input type="text" id="review-name" class="form-control" placeholder="Nume" required readonly>
+                        <input type="text" id="review-city" class="form-control" placeholder="Oras (ex: Bacau, Romania)" required>
+                        <textarea id="review-message" class="form-control" placeholder="Mesajul tau" required></textarea>
+                        
+                        <div class="star-rating-picker">
+                            <input type="radio" id="star5" name="rating" value="5" required /><label for="star5" title="5 stele"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stele"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stele"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stele"><i class="fas fa-star"></i></label>
+                            <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 stea"><i class="fas fa-star"></i></label>
+                        </div>
+
+                        <button type="submit" id="review-submit-btn" class="btn">Trimite recenzia</button>
+                    </form>
+                </div>
+
+                <div id="review-login-prompt" class="review-login-prompt">
+                    <p>Vrei sa impartasesti experienta ta?</p>
+                    <a href="#" onclick="window.scrollTo(0,0); return false;">Autentifica-te pentru a lasa o recenzie</a>
+                </div>
+            </div>
+        </section>
+        
+        <footer class = "py-4">
+            <div class = "container footer-row">
+                <div class = "footer-item">
+                    <a href = "index.html" class = "site-brand">
+                        SC<span>-ELROM</span>
+                    </a>
+                    <p class = "text">Ne focusam pe calitatea serviciilor oferite, angajandu-ne sa lucram cu atentie pentru a oferii solutii optime, sigure si durabile.</p>
+                </div>
+
+                <div class = "footer-item">
+                    <h2>Follow us on: </h2>
+                    <ul class = "social-links">
+                        <li>
+                            <a href = "#">
+                                <i class = "fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href = "#">
+                                <i class = "fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href = "#">
+                                <i class = "fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href = "#">
+                                <i class = "fab fa-pinterest"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href = "#">
+                                <i class = "fab fa-google-plus"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class = "footer-item">
+                    <h2>Orase Partenere</h2>
+                    <ul>
+                        <li><a href = "#">Brasov, Romania</a></li>
+                        <li><a href = "#">Bucuresti, Romania</a></li>
+                        <li><a href = "#">Sibiu, Romania</a></li>
+                        <li><a href = "#">Cluj-Napoca, Romania</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="subscribe-form footer-item">
+                    <h2>Abonează-te la Newsletter-ul nostru!</h2>
+                    <form class="flex" id="newsletter-form" onsubmit="return false;">
+                        <input type="email" id="newsletter-email" placeholder="Introdu adresa de email" class="form-control" required>
+                        <button type="submit" id="newsletter-btn" class="btn">Abonează-te</button>
+                    </form>
+                </div>
+            </div>
+        </footer>
+        
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="js/toast.js"></script>
+        <script src="js/supabase.js"></script>
+        <script src="js/script.js"></script>
+        <script>
+            // ==========================================
+            // Auth Logic
+            // ==========================================
+            let isLoginMode = true;
+
+            function toggleAuthMode() {
+                isLoginMode = !isLoginMode;
+                document.getElementById('auth-title').innerText = isLoginMode ? 'Autentificare' : 'Inregistrare';
+                document.getElementById('auth-submit-btn').innerText = isLoginMode ? 'Autentificare' : 'Inregistrare';
+                document.getElementById('auth-toggle-text').innerText = isLoginMode ? 'Nu ai cont? ' : 'Ai deja cont? ';
+                document.getElementById('auth-toggle-link').innerText = isLoginMode ? 'Inregistreaza-te' : 'Autentifica-te';
+            }
+
+            document.getElementById('auth-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('auth-email').value;
+                const password = document.getElementById('auth-password').value;
+                    if (isRegisterMode) {
+                        const { data, error } = await registerUser(email, password);
+                        if (error) {
+                            showToast('Eroare la inregistrare: ' + error.message, 'error');
+                        } else {
+                            showToast('Inregistrare reusita! Verifica-ti emailul pentru confirmare.', 'success');
+                        }
+                    } else {
+                        const { data, error } = await loginUser(email, password);
+                        if (error) {
+                            showToast('Email sau parola incorecte!', 'error');
+                        } else {
+                            showToast('Autentificare reusita!', 'success');
+                            updateAuthUI(data.user);
+                        }
+                    }
+                } catch (err) {
+                    showToast('A aparut o eroare. Incearca din nou.', 'error');
+                }
+            }
+
+            // ========== LOGOUT ==========
+            async function handleLogout() {
+                try {
+                    await supabase.auth.signOut();
+                    showToast('Te-ai deconectat cu succes!', 'success');
+                    updateAuthUI(null);
+                } catch (err) {
+                    showToast('Eroare la deconectare.', 'error');
+                }
+            }
+
+            // ========== UPDATE AUTH UI ==========
+            function updateAuthUI(user) {
+                const authFormContainer = document.getElementById('auth-form-container');
+                const userInfoContainer = document.getElementById('user-info-container');
+                const userEmailDisplay = document.getElementById('user-email-display');
+                const reviewFormContainer = document.getElementById('review-form-container');
+                const reviewLoginPrompt = document.getElementById('review-login-prompt');
+
+                if (user) {
+                    authFormContainer.style.display = 'none';
+                    userInfoContainer.style.display = 'block';
+                    userEmailDisplay.textContent = user.email;
+                    // Show review form, hide login prompt
+                    reviewFormContainer.style.display = 'block';
+                    reviewLoginPrompt.style.display = 'none';
+                    // Pre-fill name if available
+                    const reviewName = document.getElementById('review-name');
+                    if (reviewName && !reviewName.value) {
+                        reviewName.value = user.email.split('@')[0];
+                    }
+                } else {
+                    authFormContainer.style.display = 'block';
+                    userInfoContainer.style.display = 'none';
+                    userEmailDisplay.textContent = '';
+                    // Hide review form, show login prompt
+                    reviewFormContainer.style.display = 'none';
+                    reviewLoginPrompt.style.display = 'block';
+                }
+            }
+
+            // ========== CHECK AUTH STATE ON LOAD ==========
+            async function checkAuthState() {
+                try {
+                    const { data: { user } } = await supabase.auth.getUser();
+                    updateAuthUI(user);
+                } catch (err) {
+                    updateAuthUI(null);
+                }
+            }
+
+            // ========== LOAD REVIEWS ==========
+            async function loadReviews() {
+                const container = document.getElementById('reviews-container');
+                try {
+                    const { data, error } = await supabase
+                        .from('recenzii')
+                        .select('*')
+                        .eq('aprobat', true)
+                        .order('created_at', { ascending: false });
+
+                    if (error) {
+                        container.innerHTML = '<p style="text-align: center;">Eroare la incarcarea recenziilor.</p>';
+                        return;
+                    }
+
+                    if (!data || data.length === 0) {
+                        container.innerHTML = '<p style="text-align: center;">Nu exista recenzii momentan.</p>';
+                        return;
+                    }
+
+                    container.innerHTML = data.map(review => {
+                        const stars = generateStars(review.rating || 0);
+                        return `
+                            <div class="test-item">
+                                <div style="margin-bottom: 8px; color: #f5a623;">${stars}</div>
+                                <p class="text">${escapeHtml(review.mesaj)}</p>
+                                <div class="test-item-info">
+                                    <div>
+                                        <h3>${escapeHtml(review.nume_autor)}</h3>
+                                        <p class="text">${escapeHtml(review.oras)}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                } catch (err) {
+                    container.innerHTML = '<p style="text-align: center;">Eroare la incarcarea recenziilor.</p>';
+                }
+            }
+
+            function generateStars(rating) {
+                let stars = '';
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= rating) {
+                        stars += '<i class="fas fa-star"></i>';
+                    } else {
+                        stars += '<i class="far fa-star"></i>';
+                    }
+                }
+                return stars;
+            }
+
+            function escapeHtml(text) {
+                if (!text) return '';
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            // ========== STAR RATING PICKER ==========
+            function setupStarPicker() {
+                const picker = document.getElementById('star-rating-picker');
+                if (!picker) return;
+                const stars = picker.querySelectorAll('i');
+                stars.forEach(star => {
+                    star.addEventListener('click', function() {
+                        const val = parseInt(this.getAttribute('data-value'));
+                        document.getElementById('review-rating').value = val;
+                        stars.forEach((s, idx) => {
+                            if (idx < val) {
+                                s.classList.remove('far');
+                                s.classList.add('fas');
+                            } else {
+                                s.classList.remove('fas');
+                                s.classList.add('far');
+                            }
+                        });
+                    });
+                    star.addEventListener('mouseover', function() {
+                        const val = parseInt(this.getAttribute('data-value'));
+                        stars.forEach((s, idx) => {
+                            if (idx < val) {
+                                s.classList.remove('far');
+                                s.classList.add('fas');
+                            } else {
+                                s.classList.remove('fas');
+                                s.classList.add('far');
+                            }
+                        });
+                    });
+                    star.addEventListener('mouseout', function() {
+                        const currentRating = parseInt(document.getElementById('review-rating').value);
+                        stars.forEach((s, idx) => {
+                            if (idx < currentRating) {
+                                s.classList.remove('far');
+                                s.classList.add('fas');
+                            } else {
+                                s.classList.remove('fas');
+                                s.classList.add('far');
+                            }
+                        });
+                    });
+                });
+            }
+
+            // ========== SUBMIT REVIEW ==========
+            async function submitReview() {
+                const name = document.getElementById('review-name').value.trim();
+                const city = document.getElementById('review-city').value.trim();
+                const message = document.getElementById('review-message').value.trim();
+                const rating = parseInt(document.getElementById('review-rating').value);
+
+                if (!name || !city || !message) {
+                    showToast('Completeaza toate campurile!', 'error');
+                    return;
+                }
+                if (rating < 1 || rating > 5) {
+                    showToast('Selecteaza un rating intre 1 si 5 stele!', 'error');
+                    return;
+                }
+
+                try {
+                    const { data: { user } } = await supabase.auth.getUser();
+                    if (!user) {
+                        showToast('Trebuie sa fii autentificat pentru a lasa o recenzie.', 'error');
+                        return;
+                    }
+
+                    const { error } = await supabase.from('recenzii').insert({
+                        nume_autor: name,
+                        oras: city,
+                        mesaj: message,
+                        rating: rating,
+                        user_id: user.id,
+                        aprobat: false
+                    });
+
+                    if (error) {
+                        showToast('Eroare la trimiterea recenziei: ' + error.message, 'error');
+                    } else {
+                        showToast('Recenzia a fost trimisa! Va fi vizibila dupa aprobare.', 'success');
+                        // Reset form
+                        document.getElementById('review-city').value = '';
+                        document.getElementById('review-message').value = '';
+                        document.getElementById('review-rating').value = '0';
+                        const stars = document.querySelectorAll('#star-rating-picker i');
+                        stars.forEach(s => { s.classList.remove('fas'); s.classList.add('far'); });
+                    }
+                } catch (err) {
+                    showToast('A aparut o eroare. Incearca din nou.', 'error');
+                }
+            }
+
+            // ========== NEWSLETTER SUBSCRIBE ==========
+            async function handleNewsletterSubscribe() {
+                const emailInput = document.getElementById('newsletter-email');
+                const email = emailInput.value.trim();
+
+                if (!email) {
+                    showToast('Introdu o adresa de email!', 'error');
+                    return;
+                }
+
+                // Simple email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    showToast('Adresa de email nu este valida!', 'error');
+                    return;
+                }
+
+                try {
+                    const { data, error } = await supabase
+                        .from('abonati_newsletter')
+                        .upsert({ email: email }, { onConflict: 'email' });
+
+                    if (error) {
+                        if (error.message && error.message.includes('duplicate')) {
+                            showToast('Esti deja abonat!', 'info');
+                        } else {
+                            showToast('Eroare la abonare: ' + error.message, 'error');
+                        }
+                    } else {
+                        showToast('Te-ai abonat cu succes!', 'success');
+                        emailInput.value = '';
+                    }
+                } catch (err) {
+                    showToast('A aparut o eroare. Incearca din nou.', 'error');
+                }
+            }
+
+            // ========== INITIALIZE ON PAGE LOAD ==========
+            document.addEventListener('DOMContentLoaded', function() {
+                checkAuthState();
+                loadReviews();
+                setupStarPicker();
+            });
+        </script>
+    </body>
+</html>
