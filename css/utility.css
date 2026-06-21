@@ -1,8 +1,8 @@
 html, body{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 h1, h2, h3, h4, h5, h6{
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Outfit', sans-serif;
 }
 a{
     color: var(--dark);
@@ -14,7 +14,7 @@ ul{
 button, input[type = "submit"]{
     font-size: 1rem;
     cursor: pointer;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Outfit', sans-serif;
 }
 .container{
     max-width: 1320px;
@@ -46,7 +46,7 @@ button, input[type = "submit"]{
     border-radius: 0.2rem;
     padding: 0.7rem;
     font-size: 1rem;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Outfit', sans-serif;
     color: #fff;
     background-color: transparent;
     -webkit-box-sizing: border-box;
@@ -54,17 +54,18 @@ button, input[type = "submit"]{
 }
 .btn{
     padding: 0.7rem 2.4rem;
-    border-radius: 0.2rem;
+    border-radius: 0.5rem;
     font-weight: 600;
     background-color: var(--green);
     color: #fff;
     border: 1px solid var(--green);
+    transition: var(--trans);
+    box-shadow: 0 4px 10px rgba(245, 166, 35, 0.2);
 }
 .btn:hover{
-    opacity: 0.9;
-    -webkit-transition: var(--trans);
-    -o-transition: var(--trans);
-    transition: var(--trans);
+    opacity: 1;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 15px rgba(245, 166, 35, 0.5);
 }
 
 
