@@ -59,14 +59,20 @@ window.handleLogout = async () => {
 window.updateNavbarAuth = async () => {
     if (!supabaseClient) return;
     const user = await window.getCurrentUser();
+    
+    let admin = false;
+    if (user) {
+        admin = await window.isAdmin();
+    }
+    
     const navbarNav = document.querySelector('.navbar-nav');
     if (!navbarNav) return;
     
+    // Remove existing items synchronously right before adding new ones
     const existingAuthItems = navbarNav.querySelectorAll('.nav-item-auth');
     existingAuthItems.forEach(item => item.remove());
     
     if (user) {
-        const admin = await window.isAdmin();
         if (admin) {
             const adminItem = document.createElement('li');
             adminItem.className = 'nav-item nav-item-auth';
