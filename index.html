@@ -284,12 +284,14 @@
                 e.preventDefault();
                 const email = document.getElementById('auth-email').value;
                 const password = document.getElementById('auth-password').value;
-                    if (isRegisterMode) {
+                try {
+                    if (!isLoginMode) {
                         const { data, error } = await registerUser(email, password);
                         if (error) {
                             showToast('Eroare la inregistrare: ' + error.message, 'error');
                         } else {
-                            showToast('Inregistrare reusita! Verifica-ti emailul pentru confirmare.', 'success');
+                            showToast('Inregistrare reusita! Verifica-ti emailul.', 'success');
+                            toggleAuthMode();
                         }
                     } else {
                         const { data, error } = await loginUser(email, password);
@@ -303,7 +305,7 @@
                 } catch (err) {
                     showToast('A aparut o eroare. Incearca din nou.', 'error');
                 }
-            }
+            });
 
             // ========== LOGOUT ==========
             async function handleLogout() {
