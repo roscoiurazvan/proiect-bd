@@ -371,7 +371,6 @@
                     const { data, error } = await supabaseClient
                         .from('recenzii')
                         .select('*')
-                        .eq('aprobat', true)
                         .order('created_at', { ascending: false });
 
                     if (error) {
@@ -498,19 +497,20 @@
                         mesaj: message,
                         rating: rating,
                         user_id: user.id,
-                        aprobat: false
+                        aprobat: true
                     });
 
                     if (error) {
                         showToast('Eroare la trimiterea recenziei: ' + error.message, 'error');
                     } else {
-                        showToast('Recenzia a fost trimisa! Va fi vizibila dupa aprobare.', 'success');
+                        showToast('Recenzia a fost postata cu succes!', 'success');
                         // Reset form
                         document.getElementById('review-city').value = '';
                         document.getElementById('review-message').value = '';
                         document.getElementById('review-rating').value = '0';
                         const stars = document.querySelectorAll('#star-rating-picker i');
                         stars.forEach(s => { s.classList.remove('fas'); s.classList.add('far'); });
+                        loadReviews(); // Refresh immediately
                     }
                 } catch (err) {
                     showToast('A aparut o eroare. Incearca din nou.', 'error');
