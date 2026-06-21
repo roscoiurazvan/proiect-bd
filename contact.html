@@ -210,7 +210,7 @@
             btn.disabled = true;
 
             try {
-                const { error } = await supabase
+                const { error } = await supabaseClient
                     .from('mesaje_contact')
                     .insert({ nume: name, email: email, mesaj: message });
 
@@ -249,7 +249,7 @@
             btn.disabled = true;
 
             try {
-                const { error } = await supabase
+                const { error } = await supabaseClient
                     .from('programari')
                     .insert({ nume: name, telefon: phone, data_intalnire: date });
 
@@ -282,3 +282,5 @@
     </script>
 </body>
 </html>
+
+
