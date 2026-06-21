@@ -86,6 +86,10 @@
                     <span class="stat-number" id="stat-recenzii">-</span>
                     <span class="stat-label">Recenzii In Asteptare</span>
                 </div>
+                <div class="stat-card" style="border-left-color: #0b192c;">
+                    <span class="stat-number" id="stat-utilizatori">-</span>
+                    <span class="stat-label">Total Utilizatori</span>
+                </div>
             </div>
 
             <!-- Tabs -->
@@ -94,6 +98,7 @@
                 <button class="admin-tab" onclick="openTab('tab-programari')">Programari</button>
                 <button class="admin-tab" onclick="openTab('tab-newsletter')">Newsletter</button>
                 <button class="admin-tab" onclick="openTab('tab-recenzii')">Recenzii <span class="tab-badge" id="badge-recenzii">0</span></button>
+                <button class="admin-tab" onclick="openTab('tab-utilizatori')">Utilizatori Inregistrati</button>
             </div>
 
             <!-- Tab: Mesaje -->
@@ -173,6 +178,24 @@
                         </thead>
                         <tbody id="tbody-recenzii">
                             <tr><td colspan="6" class="admin-empty">Se incarca...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Tab: Utilizatori -->
+            <div id="tab-utilizatori" class="admin-tab-content">
+                <div class="admin-table-wrap">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Data Inregistrarii</th>
+                                <th>Email</th>
+                                <th>ID Cont (UUID)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-utilizatori">
+                            <tr><td colspan="3" class="admin-empty">Se incarca...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -340,6 +363,24 @@
                     `).join('');
                 }
 
+                // 5. Incarcare Utilizatori Publici
+                const { data: utilizatori } = await supabaseClient.from('utilizatori_publici').select('*').order('creat_la', { ascending: false });
+                const tbodyUtilizatori = document.getElementById('tbody-utilizatori');
+                
+                document.getElementById('stat-utilizatori').innerText = utilizatori ? utilizatori.length : 0;
+                
+                if (!utilizatori || utilizatori.length === 0) {
+                    tbodyUtilizatori.innerHTML = '<tr><td colspan="3" class="admin-empty">Nu s-a gasit niciun utilizator. Ai adaugat tabelul/trigger-ul?</td></tr>';
+                } else {
+                    tbodyUtilizatori.innerHTML = utilizatori.map(u => `
+                        <tr>
+                            <td>${formatDate(u.creat_la)}</td>
+                            <td><strong>${u.email}</strong></td>
+                            <td style="font-family: monospace; color: #666;">${u.id}</td>
+                        </tr>
+                    `).join('');
+                }
+
             } catch (err) {
                 console.error('Error loading dashboard data:', err);
                 showToast('Eroare JS: ' + err.message, 'error');
@@ -414,3 +455,5 @@
     </script>
 </body>
 </html>
+
+
