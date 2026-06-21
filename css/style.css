@@ -403,10 +403,10 @@ header{
     background: -o-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/services-bg.jpg) center/cover no-repeat;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/services-bg.jpg) center/cover no-repeat;
 }
-#services *{
+#services .title-wrap *{
     color: #fff;
 }
-.services-item *{
+#services .services-item *{
     color: var(--dark);
 }
 .services-item{
